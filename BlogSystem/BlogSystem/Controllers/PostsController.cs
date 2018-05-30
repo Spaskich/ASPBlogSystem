@@ -17,7 +17,7 @@ namespace BlogSystem.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            return View(db.Posts.Include(p => p.Author).ToList());
         }
 
         // GET: Posts/Details/5
@@ -47,10 +47,12 @@ namespace BlogSystem.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Body")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.Author = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
