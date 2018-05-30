@@ -2,51 +2,27 @@
     ViewBag.Title = "Home";
 }
 
+@model List<BlogSystem.Models.Post>
+
 <div class="jumbotron">
     <h1>Blog System</h1>
     <p class="lead">A simple Blog System created with ASP.NET.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
-    <div class="post col-md-6">
-        <h2 class="title">Post Title</h2>
-        <div class="about">
-            Posted on <i>30-May-2018</i>
-            by <i>Spas Kalinov (spaskich)</i>
-        </div>
-        <div class="body">Post content comes here</div>
-    </div>
-    <div class="post col-md-6">
-        <h2 class="title">Post Title</h2>
-        <div class="about">
-            Posted on <i>30-May-2018</i>
-            by <i>Spas Kalinov (spaskich)</i>
-        </div>
-        <div class="body">Post content comes here</div>
-    </div>
-    <div class="post col-md-6">
-        <h2 class="title">Post Title</h2>
-        <div class="about">
-            Posted on <i>30-May-2018</i>
-            by <i>Spas Kalinov (spaskich)</i>
-        </div>
-        <div class="body">Post content comes here</div>
-    </div>
-    <div class="post col-md-6">
-        <h2 class="title">Post Title</h2>
-        <div class="about">
-            Posted on <i>30-May-2018</i>
-            by <i>Spas Kalinov (spaskich)</i>
-        </div>
-        <div class="body">Post content comes here</div>
-    </div>
-    <div class="post col-md-6">
-        <h2 class="title">Post Title</h2>
-        <div class="about">
-            Posted on <i>30-May-2018</i>
-            by <i>Spas Kalinov (spaskich)</i>
-        </div>
-        <div class="body">Post content comes here</div>
-    </div>
-</div>
+<section class="row">
+    @foreach (var post in Model)
+    {
+        <article class="post col-md-6">
+            <h2>@post.Title</h2>
+            <div>
+                Posted on <i>@post.Date</i>
+                @if (post.Author != null)
+                {
+                    @:by <i>@post.Author.FullName (@post.Author.UserName)</i>
+                }
+                <p>@post.Body</p>
+            </div>
+        </article>
+    }
+</section>

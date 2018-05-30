@@ -17,5 +17,7 @@ namespace BlogSystem.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<BlogSystem.Models.Post> Posts { get; set; }
     }
 }
