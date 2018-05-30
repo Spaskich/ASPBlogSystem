@@ -13,7 +13,7 @@
 <section class="row">
     @foreach (var post in Model)
     {
-        <article class="post col-md-6">
+        <article class="post col-md-4">
             <h2>@post.Title</h2>
             <div>
                 Posted on <i>@post.Date</i>
@@ -21,7 +21,7 @@
                 {
                     @:by <i>@post.Author.FullName (@post.Author.UserName)</i>
                 }
-                <p>@post.Body</p>
+                <p>@BlogSystem.HelperClasses.TextUtils.TextExcerpt(post.Body, 500)</p>
             </div>
         </article>
     }
