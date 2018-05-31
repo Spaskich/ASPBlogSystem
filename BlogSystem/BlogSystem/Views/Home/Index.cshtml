@@ -10,19 +10,27 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<section class="row">
-    @foreach (var post in Model)
-    {
-        <article class="post col-md-4">
-            <h2><a href="/Posts/Details/@post.Id">@post.Title</a></h2>
-            <div>
-                Posted on <i>@post.Date</i>
-                @if (post.Author != null)
-                {
-                    @:by <i>@post.Author.FullName (@post.Author.UserName)</i>
-                }
-                <p>@BlogSystem.HelperClasses.TextUtils.TextExcerpt(post.Body, 500)</p>
+<div class="container">
+    <div class="row">
+        @foreach (var post in Model)
+        {
+            <div class="col-sm-6">
+                <article>
+                    <header>
+                        <h2>
+                            <a href="/Posts/Details/@post.Id">@post.Title</a>
+                        </h2>
+                    </header>
+                    <p>
+                        @Html.Raw(BlogSystem.HelperClasses.TextUtils.TextExcerpt(post.Body, 500))
+                    </p>
+                    <footer class="pull-right">
+                        <small class="author">
+                            @Html.DisplayFor(modelItem => post.Author.FullName)
+                        </small>
+                    </footer>
+                </article>
             </div>
-        </article>
-    }
-</section>
+        }
+    </div>
+</div>

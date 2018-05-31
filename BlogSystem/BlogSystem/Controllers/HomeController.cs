@@ -18,7 +18,7 @@ namespace BlogSystem.Controllers
             var posts = db.Posts
                 .Include(p => p.Author)
                 .OrderByDescending(p => p.Date)
-                .Take(3);
+                .Take(4);
             
             return View(posts.ToList());
         }
