@@ -22,12 +22,16 @@ namespace BlogSystem.Migrations
                 // If the database is empty, populate sample data in it
 
                 CreateUser(context, "admin@gmail.com", "123", "System Administrator");
-                CreateUser(context, "pesho@gmail.com", "123", "Peter Ivanov");
-                CreateUser(context, "merry@gmail.com", "123", "Maria Petrova");
-                CreateUser(context, "geshu@gmail.com", "123", "George Petrov");
+                CreateUser(context, "author@gmail.com", "123", "Ivan Petrov");
+                CreateUser(context, "george@gmail.com", "123", "George Peterson");
+                CreateUser(context, "user@gmail.com", "123", "Maria Petrova");
 
                 CreateRole(context, "Administrators");
                 AddUserToRole(context, "admin@gmail.com", "Administrators");
+
+                CreateRole(context, "Authors");
+                AddUserToRole(context, "author@gmail.com", "Authors");
+                AddUserToRole(context, "george@gmail.com", "Authors");
 
                 CreatePost(context,
                     title: "Work Begins on HTML5.1",
@@ -35,7 +39,7 @@ namespace BlogSystem.Migrations
                     <p>The organization says the goal for the new specification is ""to <b>match reality better</b>, to make the specification as clear as possible to readers, and of course to make it possible for all stakeholders to propose improvements, and understand what makes changes to HTML successful.""</p>
                     <p>Creating HTML5 took years, but W3C hopes using GitHub will speed up the process this time around. It plans to release a candidate recommendation for HTML5.1 by <b>June</b> and a full recommendation in <b>September</b>.</p>",
                     date: new DateTime(2016, 03, 27, 17, 53, 48),
-                    authorUsername: "merry@gmail.com"
+                    authorUsername: "author@gmail.com"
                 );
 
                 CreatePost(context,
@@ -43,7 +47,7 @@ namespace BlogSystem.Migrations
                     body: @"<p>Microsoft has released a new <b>Windows 10 Insider Preview</b> that includes native support for <b>Bash running on Ubuntu Linux</b>. The company first announced the new feature at last week''s Build development conference, and it was one of the biggest stories of the event. The current process for installing Bash is a little complication, but Microsoft has a blog post that explains how the process works.</p>
                     <p>The preview build also includes <b>Cortana</b> upgrades, extensions support, the new <b>Skype</b> Universal Windows Platform app and some interface improvements.</p>",
                     date: new DateTime(2016, 05, 11, 08, 22, 03),
-                    authorUsername: "merry@gmail.com"
+                    authorUsername: "author@gmail.com"
                 );
 
                 CreatePost(context,
@@ -52,7 +56,7 @@ namespace BlogSystem.Migrations
                     <p>Other new features include improved tab switching, tree view and crash recovery. GitHub noted, ""Crashes are nobody''s idea of fun, but in case Atom does crash on you, it periodically saves your editor state. After relaunching Atom after a crash, you should find all your work saved and ready to go.""</p>
                     <p>GitHub has also released a beta preview of Atom 1.8.</p>",
                     date: new DateTime(2016, 03, 27, 17, 53, 48),
-                    authorUsername: "merry@gmail.com"
+                    authorUsername: "author@gmail.com"
                 );
 
                 CreatePost(context,
@@ -66,7 +70,7 @@ namespace BlogSystem.Migrations
                       <li>Java Web Developer</li>
                     </ul>",
                     date: new DateTime(2016, 02, 18, 22, 14, 38),
-                    authorUsername: "pesho@gmail.com"
+                    authorUsername: "george@gmail.com"
                 );
 
                 CreatePost(context,
@@ -82,7 +86,7 @@ namespace BlogSystem.Migrations
                     <p>Other features include the ability to turn off Git’s clean and smudge filters; the ability to see where a particular setting came from; the ability to easily diagnose end-of-line problems; the ability to see a remote repository’s default branch; and support for cloning via the rsync protocol has been dropped.</p>
                     <p>The full release notes are available <a href=""https://github.com/git/git/blob/v2.8.0/Documentation/RelNotes/2.8.0.txt"">here</a>.</p>",
                     date: new DateTime(2016, 04, 11, 19, 02, 05),
-                    authorUsername: "geshu@gmail.com"
+                    authorUsername: "george@gmail.com"
                 );
 
                 CreatePost(context,
@@ -93,7 +97,7 @@ namespace BlogSystem.Migrations
                     <p>Another key update to the solution is a new middleware runtime. Expressive is designed to focus on simplicity and interoperability, and it enables developers to customize their solutions.</p>
                     <p>“I’m extremely proud of the work we’ve done with Expressive,” said Matthew Weier O’Phinney, principal engineer and Zend Framework project lead at Rogue Wave. “Expressive signals the future of PHP applications, composed of layered, single-purpose PSR-7 middleware.”</p>",
                     date: new DateTime(2016, 06, 30, 17, 36, 52),
-                    authorUsername: "merry@gmail.com"
+                    authorUsername: "george@gmail.com"
                 );
 
                 context.SaveChanges();

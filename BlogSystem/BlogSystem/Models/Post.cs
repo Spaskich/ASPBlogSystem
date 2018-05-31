@@ -28,5 +28,10 @@ namespace BlogSystem.Models
         public DateTime Date { get; set; }
 
         public ApplicationUser Author { get; set; }
+
+        public bool IsAuthor(string username)
+        {
+            return this.Author.UserName.Equals(username);
+        }
     }
 }

@@ -37,9 +37,10 @@
     </dl>
 </div>
 <p>
-    @if (User.IsInRole("Administrators"))
+    @if (User.IsInRole("Administrators") || (User.IsInRole("Authors") && Model.IsAuthor(User.Identity.Name)))
     {
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) @:|
     }
 
     @Html.ActionLink("Back to List", "Index")

@@ -48,7 +48,7 @@
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.Id })
 
-            @if (User.IsInRole("Administrators"))
+            @if (User.IsInRole("Administrators") || (User.IsInRole("Authors") && item.IsAuthor(User.Identity.Name)))
             {
                 @:| 
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @:| 
