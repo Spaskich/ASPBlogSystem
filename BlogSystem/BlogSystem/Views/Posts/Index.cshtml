@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BlogSystem.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-success btn-xs" href="/Posts/Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.FullName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.Raw(BlogSystem.HelperClasses.TextUtils.TextExcerpt(item.Body))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @if (item.Author == null)
+            {
+                <i>No Author</i>
+            }
+
+            @Html.DisplayFor(modelItem => item.Author.FullName)
+        </td>
+        <td>
+            <a class="btn btn-default btn-xs" href="/Posts/Details/@item.Id">Details</a>
+        </td>
+        @if (User.IsInRole("Administrators") || (User.IsInRole("Authors") && item.IsAuthor(User.Identity.Name)))
+            {
+                <td>
+                    <a class="btn btn-success btn-xs" href="/Posts/Edit/@item.Id">Edit</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-xs" href="/Posts/Delete/@item.Id">Delete</a>
+                </td>
+            }
+    </tr>
+}
+
+</table>
