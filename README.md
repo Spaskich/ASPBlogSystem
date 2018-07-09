@@ -31,4 +31,5 @@ A (very) simple blog system created with ASP.NET MVC Framework
 - Users can also visit the main page, the posts list and details, as well as the admin panel where they can change their password, and the Logout page;
 - Authors can visit all of the above, as well as the Create Post page, and the Edit and Delete pages for their own posts;
 - Administrators can visit all of the above, as well as the Edit and Delete pages for **all** published posts.
-
+### Dynamic Loading
+- The **Latest Posts** section on the main page and the **Posts** page reload dynamically, letting the user see when a new post is created (or an old one is edited/deleted) without needing to reload the page.
