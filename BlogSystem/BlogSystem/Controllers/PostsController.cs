@@ -17,6 +17,11 @@ namespace BlogSystem.Controllers
         // GET: Posts
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult ListPosts()
+        {
             return View(db.Posts
                 .Include(p => p.Author)
                 .OrderByDescending(p => p.Date)

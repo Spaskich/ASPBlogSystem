@@ -10,27 +10,14 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="container">
-    <div class="row">
-        @foreach (var post in Model)
-        {
-            <div class="col-sm-6">
-                <article>
-                    <header>
-                        <h2>
-                            <a href="/Posts/Details/@post.Id">@post.Title</a>
-                        </h2>
-                    </header>
-                    <p>
-                        @Html.Raw(BlogSystem.HelperClasses.TextUtils.TextExcerpt(post.Body, 500))
-                    </p>
-                    <footer class="pull-right">
-                        <small class="author">
-                            @Html.DisplayFor(modelItem => post.Author.FullName)
-                        </small>
-                    </footer>
-                </article>
-            </div>
-        }
-    </div>
-</div>
+<div id="posts"></div>
+
+<script>
+    function renderPosts() {
+        $.get("/Home/Posts", function (data) {
+            $('#posts').html(data);
+        })
+    }
+
+    setInterval(renderPosts, 250);
+</script>
